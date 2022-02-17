@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../widget/lesson_info_box.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -9,15 +11,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Color backgroundColor = const Color(0xff121517);
+  final Color scaffoldBackgroundColor = const Color(0xff121517);
   final Color primaryColor = const Color(0xffEDF4F8);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: backgroundColor,
+        backgroundColor: scaffoldBackgroundColor,
         toolbarHeight: 48,
         actions: [
           IconButton(
@@ -58,9 +60,32 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: SafeArea(
-        minimum: const EdgeInsets.all(10.0),
-        child: Container(),
+      body: Stack(
+        children: [
+          Container(
+            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.all(12),
+            child: ListView.separated(
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return LessonInfoBox(
+                  titleText: 'Titulo da aula $index',
+                );
+              },
+            ),
+          ),
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 46,
+                width: double.infinity,
+                alignment: Alignment.bottomCenter,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
