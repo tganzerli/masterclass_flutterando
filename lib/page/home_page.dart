@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../widget/bottom_bar.dart';
 import '../widget/lesson_info_box.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,8 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final Color cardBackgroundColor = const Color(0xff172026);
+  final Color bodyTextColor = const Color(0xff51565A);
+  final Color textHighlightColor = const Color(0xffEDF4F8);
+  final Color primaryColor = const Color(0xff055AA3);
   final Color scaffoldBackgroundColor = const Color(0xff121517);
-  final Color primaryColor = const Color(0xffEDF4F8);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: primaryColor, semanticsLabel: 'Label'),
+                color: textHighlightColor, semanticsLabel: 'Label'),
             onPressed: () {},
           ),
         ],
@@ -75,16 +79,9 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
-          SafeArea(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 46,
-                width: double.infinity,
-                alignment: Alignment.bottomCenter,
-              ),
-            ),
-          )
+          const BottomBar(
+            page: 'Home',
+          ),
         ],
       ),
     );
