@@ -26,6 +26,8 @@ class BottomBar extends StatelessWidget {
     if (page == 'Home') {
       selectedIcon1 = true;
     } else if (page == 'Dev') {
+      selectedIcon3 = true;
+    } else if (page == 'Repositorie') {
       selectedIcon2 = true;
     }
 

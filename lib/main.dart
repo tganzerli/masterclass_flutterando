@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masterclass_flutterando/page/lesson_page.dart';
+import 'page/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutterando MasteClass',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LossonPage(),
+      home: const SplashPage(),
     );
   }
 }
