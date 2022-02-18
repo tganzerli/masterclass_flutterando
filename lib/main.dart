@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'page/home_page.dart';
+import 'package:masterclass_flutterando/page/lesson_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const LossonPage(),
     );
   }
 }
