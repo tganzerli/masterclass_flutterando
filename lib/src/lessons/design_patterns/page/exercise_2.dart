@@ -12,9 +12,10 @@ class CpfGeneratorPage extends StatefulWidget {
 }
 
 class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
+  final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
   final CpfModel cpfModel = CpfModel();
   final String title = 'Design Patterns';
-  List<String> cpf = [];
+  List<String> _cpf = [];
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,9 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            cpf.insert(0, cpfModel.cpfGenerator());
+                            listKey.currentState!.insertItem(0,
+                                duration: const Duration(milliseconds: 500));
+                            _cpf.insert(0, cpfModel.cpfGenerator());
                           });
                         },
                         child: const CustomButton(title: 'Gerar'),
@@ -93,42 +96,53 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
                 height: 20,
               ),
               Expanded(
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const Divider(),
-                  itemCount: cpf.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                        width: double.infinity,
+                child: AnimatedList(
+                  key: listKey,
+                  initialItemCount: _cpf.length,
+                  itemBuilder: (context, index, animation) {
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(-1, 0),
+                        end: const Offset(0, 0),
+                      ).animate(animation),
+                      child: Container(
                         height: 50,
                         alignment: Alignment.center,
-                        padding: const EdgeInsets.all(14),
-                        decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Text(
-                              'CPF:',
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                            Expanded(
-                              child: Text(
-                                cpf[index],
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline2,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                          ],
-                        ));
+                        child: Container(
+                            width: double.infinity,
+                            height: 40,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(horizontal: 14),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'CPF:',
+                                  textAlign: TextAlign.left,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    _cpf[index],
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.headline2,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                              ],
+                            )),
+                      ),
+                    ); // Refer step 3
                   },
                 ),
               ),

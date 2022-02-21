@@ -14,7 +14,11 @@ class CpfModel {
       buff++;
     }
     digit = (digit * 10) % 11;
-    return digit;
+    if (digit == 10) {
+      return 0;
+    } else {
+      return digit;
+    }
   }
 
   bool cpfValidator(String cpf) {

@@ -15,7 +15,7 @@ class _Lesson4State extends State<Lesson4> {
     return const LessonPage(
       title: 'Design Patterns',
       exercises: [
-        {'title': 'Gerador de CPF', 'nameclass': CpfGeneratorPage()}
+        {'title': 'Gerador de CPF', 'nameclass': CpfGeneratorPage()},
       ],
     );
   }
