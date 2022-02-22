@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:masterclass_flutterando/src/lessons/design_patterns/lesson_4.dart';
+import 'package:masterclass_flutterando/src/page/dav_page.dart';
+import 'package:masterclass_flutterando/src/page/home_page.dart';
+import 'package:masterclass_flutterando/src/page/repositorie_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,11 +54,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w400),
         ),
       ),
-      home: const Lesson4(),
-      //routes: {
-      // '/':(context) =>  const LessonPage(),
-      // '/lesson/4/'
-      //},..
+      //home: const HomePage(),
+      routes: {
+        '/': (context) => const HomePage(),
+        '/dev/': (context) => const DavPage(),
+        '/git/': (context) => const RepositoriePage(),
+      },
     );
   }
 }

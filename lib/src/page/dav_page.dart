@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../model/dev_model.dart';
 import '../widget/bottom_bar.dart';
 
 class DavPage extends StatefulWidget {
@@ -10,29 +11,21 @@ class DavPage extends StatefulWidget {
 }
 
 class _DavPageState extends State<DavPage> {
-  final Color cardBackgroundColor = const Color(0xff172026);
-  final Color bodyTextColor = const Color(0xff51565A);
-  final Color textHighlightColor = const Color(0xffEDF4F8);
-  final Color primaryColor = const Color(0xff055AA3);
-  final Color scaffoldBackgroundColor = const Color(0xff121517);
-  final List<Map> infoSkills = [
-    {'title': 'Dart/Flutter', 'skill': 0.6},
-    {'title': 'Sql', 'skill': 0.8},
-    {'title': 'APEX', 'skill': 0.9},
-    {'title': 'HTML / CSS', 'skill': 0.4},
-  ];
+  DevModel devModel = DevModel();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: scaffoldBackgroundColor,
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         toolbarHeight: 48,
         actions: [
           IconButton(
             icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: textHighlightColor, semanticsLabel: 'Label'),
+                color: Theme.of(context).highlightColor,
+                semanticsLabel: 'Label'),
             onPressed: () {},
           ),
         ],
@@ -51,22 +44,12 @@ class _DavPageState extends State<DavPage> {
               Text(
                 'Sobre o dev',
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                  color: textHighlightColor,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
               Text(
                 'Flutterando Masterclass',
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Poppins',
-                  color: textHighlightColor,
-                ),
+                style: Theme.of(context).textTheme.headline4,
               )
             ],
           ),
@@ -86,7 +69,7 @@ class _DavPageState extends State<DavPage> {
                     height: 320,
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: cardBackgroundColor,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(28),
                     ),
                     child: Column(
@@ -98,7 +81,7 @@ class _DavPageState extends State<DavPage> {
                           width: 116,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(58),
-                            color: scaffoldBackgroundColor,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(3),
@@ -112,13 +95,8 @@ class _DavPageState extends State<DavPage> {
                           height: 20,
                         ),
                         Text(
-                          'Thiago Amaral Ganzerli',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Poppins',
-                            color: textHighlightColor,
-                          ),
+                          devModel.name,
+                          style: Theme.of(context).textTheme.headline2,
                         ),
                         const SizedBox(
                           height: 20,
@@ -126,16 +104,9 @@ class _DavPageState extends State<DavPage> {
                         Container(
                           height: 70,
                           alignment: Alignment.topCenter,
-                          child: Text(
-                            'Duis rhoncus dui venenatis consequat porttitor. Etiam aliquet congue consequat. In posuere, nunc sit amet laoreet blandit, urna sapien.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Poppins',
-                              color: bodyTextColor,
-                            ),
-                          ),
+                          child: Text(devModel.about,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyText1),
                         ),
                         const SizedBox(
                           height: 28,
@@ -147,25 +118,25 @@ class _DavPageState extends State<DavPage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SvgPicture.asset('images/whatsapp.svg',
-                                  color: textHighlightColor,
+                                  color: Theme.of(context).highlightColor,
                                   semanticsLabel: 'Label'),
                               const SizedBox(
                                 width: 28,
                               ),
                               SvgPicture.asset('images/github_alt.svg',
-                                  color: textHighlightColor,
+                                  color: Theme.of(context).highlightColor,
                                   semanticsLabel: 'Label'),
                               const SizedBox(
                                 width: 28,
                               ),
                               SvgPicture.asset('images/instagram.svg',
-                                  color: textHighlightColor,
+                                  color: Theme.of(context).highlightColor,
                                   semanticsLabel: 'Label'),
                               const SizedBox(
                                 width: 28,
                               ),
                               SvgPicture.asset('images/facebook.svg',
-                                  color: textHighlightColor,
+                                  color: Theme.of(context).highlightColor,
                                   semanticsLabel: 'Label'),
                             ],
                           ),
@@ -180,12 +151,7 @@ class _DavPageState extends State<DavPage> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       'Tecnologias Favoritas',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Poppins',
-                        color: textHighlightColor,
-                      ),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   SizedBox(
@@ -209,16 +175,11 @@ class _DavPageState extends State<DavPage> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
                       'Habilidades e Competências',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Poppins',
-                        color: textHighlightColor,
-                      ),
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
                   SkillsBox(
-                    info: infoSkills,
+                    info: devModel.infoSkills,
                   ),
                   const SizedBox(
                     height: 100,
@@ -237,14 +198,10 @@ class _DavPageState extends State<DavPage> {
 }
 
 class FavoriteBox extends StatelessWidget {
-  final Color cardBackgroundColor;
-  final Color textHighlightColor;
   final String title;
   final String imageRoute;
   const FavoriteBox({
     Key? key,
-    this.cardBackgroundColor = const Color(0xff172026),
-    this.textHighlightColor = const Color(0xffEDF4F8),
     required this.title,
     required this.imageRoute,
   }) : super(key: key);
@@ -255,7 +212,7 @@ class FavoriteBox extends StatelessWidget {
       height: 100,
       width: 94,
       decoration: BoxDecoration(
-        color: cardBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(28),
       ),
       child: Column(
@@ -264,7 +221,7 @@ class FavoriteBox extends StatelessWidget {
           children: [
             SvgPicture.asset(
               imageRoute,
-              color: textHighlightColor,
+              color: Theme.of(context).highlightColor,
               semanticsLabel: 'Label',
               height: 48,
             ),
@@ -273,12 +230,7 @@ class FavoriteBox extends StatelessWidget {
             ),
             Text(
               title,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                fontFamily: 'Poppins',
-                color: textHighlightColor,
-              ),
+              style: Theme.of(context).textTheme.headline4,
             ),
           ]),
     );
@@ -286,18 +238,10 @@ class FavoriteBox extends StatelessWidget {
 }
 
 class SkillsBox extends StatelessWidget {
-  final Color cardBackgroundColor;
-  final Color scaffoldBackgroundColor;
-  final Color bodyTextColor;
-  final Color primaryColor;
   final List<Map> info;
 
   const SkillsBox({
     Key? key,
-    this.cardBackgroundColor = const Color(0xff172026),
-    this.scaffoldBackgroundColor = const Color(0xff121517),
-    this.bodyTextColor = const Color(0xff51565A),
-    this.primaryColor = const Color(0xff055AA3),
     required this.info,
   }) : super(key: key);
 
@@ -307,7 +251,7 @@ class SkillsBox extends StatelessWidget {
       alignment: Alignment.center,
       height: info.isEmpty ? 42 : (info.length * 29) + 28,
       decoration: BoxDecoration(
-        color: cardBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(28),
       ),
       child: Align(
@@ -327,12 +271,7 @@ class SkillsBox extends StatelessWidget {
                     Expanded(
                         child: Text(
                       skill['title'],
-                      style: TextStyle(
-                        color: bodyTextColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Poppins',
-                      ),
+                      style: Theme.of(context).textTheme.bodyText2,
                     )),
                     Stack(
                       children: [
@@ -340,14 +279,14 @@ class SkillsBox extends StatelessWidget {
                           height: 9,
                           width: 250,
                           decoration: BoxDecoration(
-                              color: scaffoldBackgroundColor,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: BorderRadius.circular(4.5)),
                         ),
                         Container(
                           height: 9,
                           width: level,
                           decoration: BoxDecoration(
-                              color: primaryColor,
+                              color: Theme.of(context).primaryColor,
                               borderRadius: BorderRadius.circular(4.5)),
                         )
                       ],

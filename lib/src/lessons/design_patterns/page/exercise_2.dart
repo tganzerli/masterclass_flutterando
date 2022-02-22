@@ -15,7 +15,7 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
   final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
   final CpfModel cpfModel = CpfModel();
   final String title = 'Design Patterns';
-  List<String> _cpf = [];
+  List<String> cpf = [];
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
                           setState(() {
                             listKey.currentState!.insertItem(0,
                                 duration: const Duration(milliseconds: 500));
-                            _cpf.insert(0, cpfModel.cpfGenerator());
+                            cpf.insert(0, cpfModel.cpfGenerator());
                           });
                         },
                         child: const CustomButton(title: 'Gerar'),
@@ -98,7 +98,7 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
               Expanded(
                 child: AnimatedList(
                   key: listKey,
-                  initialItemCount: _cpf.length,
+                  initialItemCount: cpf.length,
                   itemBuilder: (context, index, animation) {
                     return SlideTransition(
                       position: Tween<Offset>(
@@ -130,7 +130,7 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    _cpf[index],
+                                    cpf[index],
                                     textAlign: TextAlign.center,
                                     style:
                                         Theme.of(context).textTheme.headline2,

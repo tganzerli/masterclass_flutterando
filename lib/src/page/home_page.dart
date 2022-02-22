@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../model/lessons_model.dart';
 import '../widget/bottom_bar.dart';
 import '../widget/lesson_info_box.dart';
 
@@ -12,23 +13,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final Color cardBackgroundColor = const Color(0xff172026);
-  final Color bodyTextColor = const Color(0xff51565A);
-  final Color textHighlightColor = const Color(0xffEDF4F8);
-  final Color primaryColor = const Color(0xff055AA3);
-  final Color scaffoldBackgroundColor = const Color(0xff121517);
+  final LessonsModel lessonsModel = LessonsModel();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: scaffoldBackgroundColor,
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         toolbarHeight: 48,
         actions: [
           IconButton(
             icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: textHighlightColor, semanticsLabel: 'Label'),
+                color: Theme.of(context).highlightColor,
+                semanticsLabel: 'Label'),
             onPressed: () {},
           ),
         ],
@@ -71,10 +70,16 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(12),
             child: ListView.separated(
               separatorBuilder: (context, index) => const Divider(),
-              itemCount: 4,
+              itemCount: lessonsModel.lissons.length,
               itemBuilder: (context, index) {
+                Map lesson = lessonsModel.lissons[index];
                 return LessonInfoBox(
-                  titleText: 'Titulo da aula $index',
+                  titleText: lesson['name'],
+                  imageRoute: lesson['icon'],
+                  bodyText: lesson['info'],
+                  exercisesNumber:
+                      lessonsModel.numberOfExercises(lesson['name']),
+                  exercisesList: lessonsModel.exercisesList(lesson['name']),
                 );
               },
             ),

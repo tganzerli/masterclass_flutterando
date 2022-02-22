@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class LessonInfoBox extends StatelessWidget {
-  final Color cardBackgroundColor;
-  final Color scaffoldBackgroundColor;
-  final Color primaryColor;
-  final Color bodyTextColor;
-  final Color textHighlightColor;
+import '../page/lesson_page.dart';
 
+class LessonInfoBox extends StatelessWidget {
   final String titleText;
   final String bodyText;
   final int exercisesNumber;
   final String imageRoute;
+  final List<Map> exercisesList;
 
   const LessonInfoBox({
     Key? key,
-    this.cardBackgroundColor = const Color(0xff172026),
-    this.bodyTextColor = const Color(0xff51565A),
-    this.textHighlightColor = const Color(0xffEDF4F8),
-    this.primaryColor = const Color(0xff055AA3),
-    this.scaffoldBackgroundColor = const Color(0xff121517),
-    this.titleText = 'Aula Titulo',
-    this.bodyText = 'Informaçoes da aula',
-    this.exercisesNumber = 0,
-    this.imageRoute = 'images/material_toys.svg',
+    required this.titleText,
+    required this.bodyText,
+    required this.exercisesNumber,
+    required this.imageRoute,
+    required this.exercisesList,
   }) : super(key: key);
 
   @override
@@ -32,7 +25,7 @@ class LessonInfoBox extends StatelessWidget {
       height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: cardBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(28),
       ),
       child: Padding(
@@ -48,13 +41,13 @@ class LessonInfoBox extends StatelessWidget {
                     height: 43,
                     width: 43,
                     decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(21.5),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: SvgPicture.asset(imageRoute,
-                          color: scaffoldBackgroundColor,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           semanticsLabel: 'Label'),
                     ),
                   ),
@@ -64,36 +57,21 @@ class LessonInfoBox extends StatelessWidget {
                       child: Text(
                         titleText,
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: textHighlightColor,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
+                        style: Theme.of(context).textTheme.headline2,
                       ),
                     ),
                   ),
                   Text(
                     'Exercicios:',
                     textAlign: TextAlign.right,
-                    style: TextStyle(
-                      color: bodyTextColor,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Container(
                     padding: const EdgeInsets.fromLTRB(8, 0, 4, 0),
                     child: Text(
                       exercisesNumber.toString(),
                       textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: textHighlightColor,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      ),
+                      style: Theme.of(context).textTheme.headline2,
                     ),
                   ),
                 ],
@@ -105,12 +83,7 @@ class LessonInfoBox extends StatelessWidget {
                 child: Text(
                   bodyText,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: bodyTextColor,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
             ),
@@ -122,38 +95,36 @@ class LessonInfoBox extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset('images/awesome_github.svg',
-                      color: textHighlightColor, semanticsLabel: 'Label'),
+                      color: Theme.of(context).highlightColor,
+                      semanticsLabel: 'Label'),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4.36),
                       child: Text(
                         'Acessar código fonte',
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: textHighlightColor,
-                          fontFamily: 'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                        ),
+                        style: Theme.of(context).textTheme.headline4,
                       ),
                     ),
                   ),
-                  Container(
-                    height: 34.5,
-                    width: 119,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    child: Text(
-                      'Ver mais',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: textHighlightColor,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => LessonPage(
+                              title: titleText, exercises: exercisesList)));
+                    },
+                    child: Container(
+                      height: 34.5,
+                      width: 119,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: Text(
+                        'Ver mais',
+                        textAlign: TextAlign.left,
+                        style: Theme.of(context).textTheme.headline4,
                       ),
                     ),
                   ),

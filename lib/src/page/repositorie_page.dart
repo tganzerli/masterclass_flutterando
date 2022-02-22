@@ -22,6 +22,7 @@ class _RepositoriePageState extends State<RepositoriePage> {
     return Scaffold(
       backgroundColor: scaffoldBackgroundColor,
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: scaffoldBackgroundColor,
         toolbarHeight: 48,
         actions: [

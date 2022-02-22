@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:masterclass_flutterando/src/page/home_page.dart';
+
+import '../page/dav_page.dart';
+import '../page/repositorie_page.dart';
 
 class BottomBar extends StatelessWidget {
-  final Color cardBackgroundColor;
-  final Color primaryColor;
-  final Color textHighlightColor;
   final Color bottonBarBackgroundColor;
   final String page;
 
   const BottomBar({
     Key? key,
-    this.cardBackgroundColor = const Color(0xff172026),
-    this.primaryColor = const Color(0xff055AA3),
-    this.textHighlightColor = const Color(0xffEDF4F8),
     this.bottonBarBackgroundColor = const Color(0xE6121517),
     required this.page,
   }) : super(key: key);
@@ -45,62 +43,108 @@ class BottomBar extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: IconBox(
-                  textHighlightColor: textHighlightColor,
-                  title: 'Atividades',
-                  cardBackgroundColor: cardBackgroundColor,
-                  icon: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 3),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset('images/feather_target.svg',
-                          color: textHighlightColor, semanticsLabel: 'Label'),
+                child: GestureDetector(
+                  onTap: () {
+                    if (!selectedIcon1) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          _createRoute(const HomePage()), (route) => false);
+                    }
+                  },
+                  child: IconBox(
+                    textHighlightColor: Theme.of(context).highlightColor,
+                    title: 'Atividades',
+                    cardBackgroundColor: Theme.of(context).cardColor,
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SvgPicture.asset('images/feather_target.svg',
+                            color: Theme.of(context).highlightColor,
+                            semanticsLabel: 'Label'),
+                      ),
                     ),
+                    selected: selectedIcon1,
                   ),
-                  selected: selectedIcon1,
                 ),
               ),
-              Container(
-                color: textHighlightColor,
-                width: 0.8,
+              VerticalDivider(
+                color: Theme.of(context).highlightColor,
+                thickness: 0.8,
               ),
               Expanded(
-                child: IconBox(
-                  textHighlightColor: textHighlightColor,
-                  title: 'Repositórios',
-                  cardBackgroundColor: cardBackgroundColor,
-                  icon: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 3),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset('images/awesome_github.svg',
-                          color: textHighlightColor, semanticsLabel: 'Label'),
+                child: GestureDetector(
+                  onTap: () {
+                    if (!selectedIcon2) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          _createRoute(const RepositoriePage()),
+                          (route) => false);
+                    }
+                  },
+                  child: IconBox(
+                    textHighlightColor: Theme.of(context).highlightColor,
+                    title: 'Repositórios',
+                    cardBackgroundColor: Theme.of(context).cardColor,
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SvgPicture.asset('images/awesome_github.svg',
+                            color: Theme.of(context).highlightColor,
+                            semanticsLabel: 'Label'),
+                      ),
                     ),
+                    selected: selectedIcon2,
                   ),
-                  selected: selectedIcon2,
                 ),
               ),
-              Container(
-                color: textHighlightColor,
-                width: 0.8,
+              VerticalDivider(
+                color: Theme.of(context).highlightColor,
+                thickness: 0.8,
               ),
               Expanded(
-                child: IconBox(
-                  textHighlightColor: textHighlightColor,
-                  title: 'Sobre o dev',
-                  cardBackgroundColor: cardBackgroundColor,
-                  icon: Icon(
-                    Icons.person,
-                    size: 26,
-                    color: textHighlightColor,
+                child: GestureDetector(
+                  onTap: () {
+                    if (!selectedIcon3) {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          _createRoute(const DavPage()), (route) => false);
+                    }
+                  },
+                  child: IconBox(
+                    textHighlightColor: Theme.of(context).highlightColor,
+                    title: 'Sobre o dev',
+                    cardBackgroundColor: Theme.of(context).cardColor,
+                    icon: Icon(
+                      Icons.person,
+                      size: 26,
+                      color: Theme.of(context).highlightColor,
+                    ),
+                    selected: selectedIcon3,
                   ),
-                  selected: selectedIcon3,
                 ),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Route _createRoute(page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }

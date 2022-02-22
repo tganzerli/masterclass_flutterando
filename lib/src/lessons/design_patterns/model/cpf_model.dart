@@ -1,12 +1,7 @@
 import 'dart:math';
 
 class CpfModel {
-  final String cpf;
-  CpfModel({
-    this.cpf = '0',
-  });
-
-  num digitGenerator(List cpfList, int digitToCalc) {
+  num _digitGenerator(List cpfList, int digitToCalc) {
     num digit = 0;
     int buff = 0;
     for (var i = digitToCalc; i >= 2; i--) {
@@ -21,17 +16,18 @@ class CpfModel {
     }
   }
 
-  bool cpfValidator(String cpf) {
-    cpf = cpf.replaceAll('.', '');
-    cpf = cpf.replaceAll('-', '');
-    cpf = cpf.replaceAll(' ', '');
-    if (cpf.length != 11) {
-      return false;
-    }
+  String _cpfString(cpfList) {
+    return "${cpfList[0]}${cpfList[1]}${cpfList[2]}.${cpfList[3]}${cpfList[4]}${cpfList[5]}.${cpfList[6]}${cpfList[7]}${cpfList[8]}-${cpfList[9]}${cpfList[10]}";
+  }
+
+  Map cpfValidator(String cpf) {
     List cpfList = cpf.split('').map(int.parse).toList();
-    return (digitGenerator(cpfList, 10) == cpfList[9]) &&
-        (digitGenerator(cpfList, 11) == cpfList[10]) &&
-        !(cpfList.every((element) => element == cpfList[0]));
+    return {
+      'cpf': _cpfString(cpfList),
+      'valid': (_digitGenerator(cpfList, 10) == cpfList[9]) &&
+          (_digitGenerator(cpfList, 11) == cpfList[10]) &&
+          !(cpfList.every((element) => element == cpfList[0]))
+    };
   }
 
   String cpfGenerator() {
@@ -39,8 +35,8 @@ class CpfModel {
     for (var i = 0; i < 9; i++) {
       cpfList.add(Random().nextInt(10));
     }
-    cpfList.add(digitGenerator(cpfList, 10));
-    cpfList.add(digitGenerator(cpfList, 11));
-    return "${cpfList[0]}${cpfList[1]}${cpfList[2]}.${cpfList[3]}${cpfList[4]}${cpfList[5]}.${cpfList[6]}${cpfList[7]}${cpfList[8]}-${cpfList[9]}${cpfList[10]}";
+    cpfList.add(_digitGenerator(cpfList, 10));
+    cpfList.add(_digitGenerator(cpfList, 11));
+    return _cpfString(cpfList);
   }
 }
