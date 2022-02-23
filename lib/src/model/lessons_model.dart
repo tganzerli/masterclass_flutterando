@@ -1,14 +1,24 @@
+import '../lessons/animation/exercise_1.dart';
+import '../lessons/animation/exercise_2.dart';
+import '../lessons/animation/exercise_3.dart';
+import '../lessons/animation/exercise_4.dart';
 import '../lessons/design_patterns/page/exercise_1.dart';
 import '../lessons/design_patterns/page/exercise_2.dart';
 
 class LessonsModel {
   List<Map> lissons = [
     {
+      'name': 'Animações',
+      'icon': 'images/awesome_running.svg',
+      'info':
+          'Entendendo o funcianamento da API de animação do Flutter, através da criação de duas aniamaçoes utilizando tanto Animações implícitas como Animações Controladas',
+    },
+    {
       'name': 'Design Patterns',
       'icon': 'images/desing.svg',
       'info':
           'Início da teoria de design patterns, com a aplicação da teoria e um validador e gerador de CPF',
-    }
+    },
   ];
 
   List<Map> exercises = [
@@ -21,6 +31,26 @@ class LessonsModel {
       'lesson': 'Design Patterns',
       'title': 'Gerador de CPF',
       'nameclass': const CpfGeneratorPage()
+    },
+    {
+      'lesson': 'Animações',
+      'title': 'Animações implícitas Exe:1',
+      'nameclass': const ImplicitAnimation1()
+    },
+    {
+      'lesson': 'Animações',
+      'title': 'Animações implícitas Exe:2',
+      'nameclass': const ImplicitAnimation2()
+    },
+    {
+      'lesson': 'Animações',
+      'title': 'Animações Controladas Exe:1',
+      'nameclass': const ControlledAnimation1()
+    },
+    {
+      'lesson': 'Animações',
+      'title': 'Animações Controladas Exe:2',
+      'nameclass': const ControlledAnimation2()
     },
   ];
 

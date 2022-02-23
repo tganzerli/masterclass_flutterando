@@ -11,24 +11,19 @@ class RepositoriePage extends StatefulWidget {
 }
 
 class _RepositoriePageState extends State<RepositoriePage> {
-  final Color cardBackgroundColor = const Color(0xff172026);
-  final Color bodyTextColor = const Color(0xff51565A);
-  final Color textHighlightColor = const Color(0xffEDF4F8);
-  final Color primaryColor = const Color(0xff055AA3);
-  final Color scaffoldBackgroundColor = const Color(0xff121517);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         toolbarHeight: 48,
         actions: [
           IconButton(
             icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: textHighlightColor, semanticsLabel: 'Label'),
+                color: Theme.of(context).highlightColor,
+                semanticsLabel: 'Label'),
             onPressed: () {},
           ),
         ],
@@ -43,22 +38,16 @@ class _RepositoriePageState extends State<RepositoriePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'Repositórios',
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Poppins'),
+                style: Theme.of(context).textTheme.headline1,
               ),
               Text(
                 'Flutterando Masterclass',
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Poppins'),
+                style: Theme.of(context).textTheme.headline4,
               )
             ],
           ),
