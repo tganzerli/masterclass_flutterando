@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../model/cpf_model.dart';
 
@@ -27,7 +28,7 @@ class CpfValidateStore extends ChangeNotifier {
     _text = _text.replaceAll('-', '');
     _text = _text.replaceAll(' ', '');
 
-    if (_cpf.length != 11) {
+    if (_text.length != 11) {
       _wrongCPF = true;
     } else {
       _cpf = '';
