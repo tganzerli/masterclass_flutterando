@@ -29,103 +29,104 @@ class BottomBar extends StatelessWidget {
       selectedIcon2 = true;
     }
 
-    return Align(
+    return /*Align(
       alignment: Alignment.bottomCenter,
       child: Container(
         height: 86,
         color: bottonBarBackgroundColor,
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.only(top: 5),
-        child: Container(
-          height: 46,
-          width: double.infinity,
-          alignment: Alignment.center,
-          child: Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    if (!selectedIcon1) {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          _createRoute(const HomePage()), (route) => false);
-                    }
-                  },
-                  child: IconBox(
-                    textHighlightColor: Theme.of(context).highlightColor,
-                    title: 'Atividades',
-                    cardBackgroundColor: Theme.of(context).cardColor,
-                    icon: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 3),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: SvgPicture.asset('images/feather_target.svg',
-                            color: Theme.of(context).highlightColor,
-                            semanticsLabel: 'Label'),
-                      ),
-                    ),
-                    selected: selectedIcon1,
+        child:*/
+        Container(
+      height: 46,
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: Row(
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                if (!selectedIcon1) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      _createRoute(const HomePage()), (route) => false);
+                }
+              },
+              child: IconBox(
+                textHighlightColor: Theme.of(context).highlightColor,
+                title: 'Atividades',
+                cardBackgroundColor: Theme.of(context).cardColor,
+                icon: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset('images/feather_target.svg',
+                        color: Theme.of(context).highlightColor,
+                        semanticsLabel: 'Label'),
                   ),
                 ),
+                selected: selectedIcon1,
               ),
-              VerticalDivider(
-                color: Theme.of(context).highlightColor,
-                thickness: 0.8,
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    if (!selectedIcon2) {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          _createRoute(const RepositoriePage()),
-                          (route) => false);
-                    }
-                  },
-                  child: IconBox(
-                    textHighlightColor: Theme.of(context).highlightColor,
-                    title: 'Repositórios',
-                    cardBackgroundColor: Theme.of(context).cardColor,
-                    icon: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 3),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: SvgPicture.asset('images/awesome_github.svg',
-                            color: Theme.of(context).highlightColor,
-                            semanticsLabel: 'Label'),
-                      ),
-                    ),
-                    selected: selectedIcon2,
-                  ),
-                ),
-              ),
-              VerticalDivider(
-                color: Theme.of(context).highlightColor,
-                thickness: 0.8,
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    if (!selectedIcon3) {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          _createRoute(const DavPage()), (route) => false);
-                    }
-                  },
-                  child: IconBox(
-                    textHighlightColor: Theme.of(context).highlightColor,
-                    title: 'Sobre o dev',
-                    cardBackgroundColor: Theme.of(context).cardColor,
-                    icon: Icon(
-                      Icons.person,
-                      size: 26,
-                      color: Theme.of(context).highlightColor,
-                    ),
-                    selected: selectedIcon3,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+          VerticalDivider(
+            color: Theme.of(context).highlightColor,
+            thickness: 0.8,
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                if (!selectedIcon2) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      _createRoute(const RepositoriePage()), (route) => false);
+                }
+              },
+              child: IconBox(
+                textHighlightColor: Theme.of(context).highlightColor,
+                title: 'Repositórios',
+                cardBackgroundColor: Theme.of(context).cardColor,
+                icon: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset('images/awesome_github.svg',
+                        color: Theme.of(context).highlightColor,
+                        semanticsLabel: 'Label'),
+                  ),
+                ),
+                selected: selectedIcon2,
+              ),
+            ),
+          ),
+          VerticalDivider(
+            color: Theme.of(context).highlightColor,
+            thickness: 0.8,
+          ),
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                if (!selectedIcon3) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      _createRoute(const DavPage()), (route) => false);
+                }
+              },
+              child: IconBox(
+                textHighlightColor: Theme.of(context).highlightColor,
+                title: 'Sobre o dev',
+                cardBackgroundColor: Theme.of(context).cardColor,
+                icon: Icon(
+                  Icons.person,
+                  size: 26,
+                  color: Theme.of(context).highlightColor,
+                ),
+                selected: selectedIcon3,
+              ),
+            ),
+          ),
+        ],
       ),
+      /*),
+      ),
+    */
     );
   }
 

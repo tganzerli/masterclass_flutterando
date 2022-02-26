@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-import '../model/lessons_model.dart';
+import '../theme/appbar.dart';
 import '../widget/bottom_bar.dart';
-import '../widget/lesson_info_box.dart';
+import 'activity_page.dart';
+import 'dav_page.dart';
+import 'repositorie_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,81 +15,114 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final LessonsModel lessonsModel = LessonsModel();
+  int _selectedIndex = 0;
+  final List<Map> _pages = <Map>[
+    {'title': 'Atividades', 'page': const ActivityPage()},
+    {'title': 'Repositorio', 'page': const RepositoriePage()},
+    {'title': 'Sobre o Dev', 'page': const DavPage()},
+  ];
 
   @override
   Widget build(BuildContext context) {
+    Map _page = _pages[_selectedIndex];
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        toolbarHeight: 48,
-        actions: [
-          IconButton(
-            icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: Theme.of(context).highlightColor,
-                semanticsLabel: 'Label'),
-            onPressed: () {},
-          ),
-        ],
-        leading: Padding(
-          padding: const EdgeInsets.only(bottom: 4),
-          child: Image.asset(
-            'images/logo.png',
-          ),
-        ),
-        title: Align(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Atividades',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Poppins'),
+      appBar: CustomAppBar(
+        title: _page['title'],
+        useIcon: true,
+      ),
+      body: Center(
+        child: _page['page'],
+      ),
+      bottomNavigationBar: Container(
+        height: 86,
+        color: const Color(0xE6121517),
+        alignment: Alignment.topCenter,
+        padding: const EdgeInsets.only(top: 5),
+        child: Container(
+          height: 46,
+          width: double.infinity,
+          alignment: Alignment.center,
+          child: Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                    });
+                  },
+                  child: IconBox(
+                    textHighlightColor: Theme.of(context).highlightColor,
+                    title: 'Atividades',
+                    cardBackgroundColor: Theme.of(context).cardColor,
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SvgPicture.asset('images/feather_target.svg',
+                            color: Theme.of(context).highlightColor,
+                            semanticsLabel: 'Label'),
+                      ),
+                    ),
+                    selected: _selectedIndex == 0,
+                  ),
+                ),
               ),
-              Text(
-                'Flutterando Masterclass',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: 'Poppins'),
-              )
+              VerticalDivider(
+                color: Theme.of(context).highlightColor,
+                thickness: 0.8,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                    });
+                  },
+                  child: IconBox(
+                    textHighlightColor: Theme.of(context).highlightColor,
+                    title: 'Repositórios',
+                    cardBackgroundColor: Theme.of(context).cardColor,
+                    icon: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SvgPicture.asset('images/awesome_github.svg',
+                            color: Theme.of(context).highlightColor,
+                            semanticsLabel: 'Label'),
+                      ),
+                    ),
+                    selected: _selectedIndex == 1,
+                  ),
+                ),
+              ),
+              VerticalDivider(
+                color: Theme.of(context).highlightColor,
+                thickness: 0.8,
+              ),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = 2;
+                    });
+                  },
+                  child: IconBox(
+                    textHighlightColor: Theme.of(context).highlightColor,
+                    title: 'Sobre o dev',
+                    cardBackgroundColor: Theme.of(context).cardColor,
+                    icon: Icon(
+                      Icons.person,
+                      size: 26,
+                      color: Theme.of(context).highlightColor,
+                    ),
+                    selected: _selectedIndex == 2,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-      ),
-      body: Stack(
-        children: [
-          Container(
-            alignment: Alignment.topCenter,
-            padding: const EdgeInsets.all(12),
-            child: ListView.separated(
-              separatorBuilder: (context, index) => const Divider(),
-              itemCount: lessonsModel.lissons.length,
-              itemBuilder: (context, index) {
-                Map lesson = lessonsModel.lissons[index];
-                return LessonInfoBox(
-                  titleText: lesson['name'],
-                  imageRoute: lesson['icon'],
-                  bodyText: lesson['info'],
-                  exercisesNumber:
-                      lessonsModel.numberOfExercises(lesson['name']),
-                  exercisesList: lessonsModel.exercisesList(lesson['name']),
-                );
-              },
-            ),
-          ),
-          const BottomBar(
-            page: 'Home',
-          ),
-        ],
       ),
     );
   }
