@@ -1,12 +1,10 @@
 import '../lessons/animation/exercise_1.dart';
-import '../lessons/animation/exercise_2.dart';
 import '../lessons/animation/exercise_3.dart';
-import '../lessons/animation/exercise_4.dart';
 import '../lessons/design_patterns/page/exercise_1.dart';
 import '../lessons/design_patterns/page/exercise_2.dart';
 
 class LessonsModel {
-  List<Map> lissons = [
+  final List<Map> lissons = [
     {
       'name': 'Animações',
       'icon': 'images/awesome_running.svg',
@@ -21,7 +19,7 @@ class LessonsModel {
     },
   ];
 
-  List<Map> exercises = [
+  final List<Map> exercises = [
     {
       'lesson': 'Design Patterns',
       'title': 'Validador de CPF',
@@ -40,7 +38,7 @@ class LessonsModel {
     {
       'lesson': 'Animações',
       'title': 'Animações implícitas Exe:2',
-      'nameclass': const ImplicitAnimation2()
+      'nameclass': const ImplicitAnimation1()
     },
     {
       'lesson': 'Animações',
@@ -50,7 +48,7 @@ class LessonsModel {
     {
       'lesson': 'Animações',
       'title': 'Animações Controladas Exe:2',
-      'nameclass': const ControlledAnimation2()
+      'nameclass': const ControlledAnimation1()
     },
   ];
 

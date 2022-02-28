@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../activity/pages/activity_page.dart';
+import '../repositorie/pages/repositorie_page.dart';
 import '../theme/appbar.dart';
 import '../widget/bottom_bar.dart';
-import 'activity_page.dart';
-import 'dav_page.dart';
-import 'repositorie_page.dart';
+import '../dev/pages/dav_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

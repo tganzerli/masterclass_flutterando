@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:masterclass_flutterando/src/page/dav_page.dart';
+import 'package:masterclass_flutterando/src/dev/pages/dav_page.dart';
 import 'package:masterclass_flutterando/src/page/home_page.dart';
-import 'package:masterclass_flutterando/src/page/repositorie_page.dart';
+import 'package:masterclass_flutterando/src/repositorie/pages/repositorie_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

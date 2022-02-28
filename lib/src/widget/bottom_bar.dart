@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:masterclass_flutterando/src/page/home_page.dart';
-
-import '../page/dav_page.dart';
-import '../page/repositorie_page.dart';
+import '../dev/pages/dav_page.dart';
+import '../repositorie/pages/repositorie_page.dart';
 
 class BottomBar extends StatelessWidget {
   final Color bottonBarBackgroundColor;

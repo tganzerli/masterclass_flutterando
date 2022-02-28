@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../model/lessons_model.dart';
-import '../widget/lesson_info_box.dart';
+import '../models/lessons_model.dart';
+import '../widgets/lesson_info_box.dart';
 
 class ActivityPage extends StatefulWidget {
   const ActivityPage({Key? key}) : super(key: key);

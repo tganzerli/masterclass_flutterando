@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../page/lesson_page.dart';
+import '../pages/lesson_page.dart';
 
 class LessonInfoBox extends StatelessWidget {
   final String titleText;

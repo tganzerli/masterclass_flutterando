@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../widget/losson_box.dart';
+import 'package:masterclass_flutterando/src/activity/widgets/losson_box.dart';
 
 class LessonPage extends StatefulWidget {
   final String title;
