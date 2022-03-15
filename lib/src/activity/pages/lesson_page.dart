@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:masterclass_flutterando/src/activity/widgets/losson_box.dart';
+import 'package:masterclass_flutterando/src/theme/appbar.dart';
 
 class LessonPage extends StatefulWidget {
   final String title;
@@ -20,37 +20,7 @@ class _LessonPageState extends State<LessonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        toolbarHeight: 48,
-        actions: [
-          IconButton(
-            icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: Theme.of(context).highlightColor,
-                semanticsLabel: 'Label'),
-            onPressed: () {},
-          ),
-        ],
-        title: Align(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.title,
-                textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              Text(
-                'Flutterando Masterclass',
-                textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.headline4,
-              )
-            ],
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: widget.title),
       body: Container(
         alignment: Alignment.topCenter,
         padding: const EdgeInsets.all(12),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:masterclass_flutterando/src/theme/appbar.dart';
 
 import '../stores/cpf_validate_store.dart';
 import '../widget/custom_button.dart';
@@ -36,38 +36,7 @@ class _CpfValidatePageState extends State<CpfValidatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        toolbarHeight: 48,
-        actions: [
-          IconButton(
-            icon: SvgPicture.asset('images/awesome_moon.svg',
-                color: Theme.of(context).highlightColor,
-                semanticsLabel: 'Label'),
-            onPressed: () {},
-          ),
-        ],
-        title: Align(
-          alignment: Alignment.centerLeft,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              Text(
-                'Flutterando Masterclass',
-                textAlign: TextAlign.left,
-                style: Theme.of(context).textTheme.headline4,
-              )
-            ],
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: title),
       body: Padding(
         padding: const EdgeInsets.all(14.0),
         child: SizedBox(

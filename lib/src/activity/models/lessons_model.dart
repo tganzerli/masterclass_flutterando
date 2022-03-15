@@ -1,3 +1,7 @@
+import 'package:masterclass_flutterando/src/activity/lessons/animation/exercise_2.dart';
+import 'package:masterclass_flutterando/src/activity/lessons/animation/exercise_4.dart';
+import 'package:masterclass_flutterando/src/activity/lessons/design_patterns_ll/pages/tudo_page.dart';
+
 import '../lessons/animation/exercise_1.dart';
 import '../lessons/animation/exercise_3.dart';
 import '../lessons/design_patterns/page/exercise_1.dart';
@@ -17,9 +21,20 @@ class LessonsModel {
       'info':
           'Início da teoria de design patterns, com a aplicação da teoria e um validador e gerador de CPF',
     },
+    {
+      'name': 'Design Patterns II',
+      'icon': 'images/desing.svg',
+      'info':
+          'Compreendendo a o desing da arquitetura com a implementação de REST (Server & Repositorie)',
+    },
   ];
 
   final List<Map> exercises = [
+    {
+      'lesson': 'Design Patterns II',
+      'title': 'Lista de To Do',
+      'nameclass': const TodoPage()
+    },
     {
       'lesson': 'Design Patterns',
       'title': 'Validador de CPF',
@@ -38,7 +53,7 @@ class LessonsModel {
     {
       'lesson': 'Animações',
       'title': 'Animações implícitas Exe:2',
-      'nameclass': const ImplicitAnimation1()
+      'nameclass': const ImplicitAnimation2()
     },
     {
       'lesson': 'Animações',
@@ -48,7 +63,7 @@ class LessonsModel {
     {
       'lesson': 'Animações',
       'title': 'Animações Controladas Exe:2',
-      'nameclass': const ControlledAnimation1()
+      'nameclass': const ControlledAnimation2()
     },
   ];
 
